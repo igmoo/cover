@@ -1,0 +1,34 @@
+{# (couche 3) #}
+
+{% extends "PWQCMBundle::layout.html.twig" %}
+
+{% block title %}
+	Accueil - {{ parent() }}
+{% endblock %}
+
+{% block title2 %}Gestion des QCM{% endblock %}
+
+{% block body %}
+	<h2>Tous les QCM</h2>
+
+	<ul>
+	{% for qcm in listQcm %}
+		<li>
+			<h3><a href="{{ path('pw_qcm_view', {'id': qcm.id}) }}">{{ qcm.enonce }}</a><h3>
+		 <ul>
+			<li>A-/&nbsp;&nbsp; {{ qcm.propoA }}</li>
+			<li>B-/&nbsp;&nbsp; {{ qcm.propoB }}</li>
+			<li>C-/&nbsp;&nbsp; {{ qcm.propoC }}</li>
+			<li>D-/ &nbsp;&nbsp;{{ qcm.propoD }}</li>
+			</ul>
+		</li>
+	{% else %}
+		<li>Pas encore de qcm</li>
+	{% endfor %}
+	</ul>
+		<h3>Cette page supporte les formule mathematiques</h3>
+	    <p>
+            When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
+            $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+        </p>
+{% endblock %}
