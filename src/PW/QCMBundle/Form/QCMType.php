@@ -13,15 +13,32 @@ class QCMType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('enonce',     'text')
-                ->add('propoA',     'text')
-                ->add('propoB',     'text')
-                ->add('propoC',     'text')
-                ->add('propoD',     'text')
-                ->add('propoE',     'text')
-                ->add('reponse',    'text')
+        $builder->add('enonce',     'textarea')
+                ->add('propoA',     'textarea')
+                ->add('propoB',     'textarea')
+                ->add('propoC',     'textarea')
+                ->add('propoD',     'textarea')
+                ->add('propoE',     'textarea')
+                ->add('reponse',    'choice', array(
+                    'choices' => array(
+                        'A' => 'Proposition A',
+                        'B' => 'Proposition B',
+                        'C' => 'Proposition C',
+                        'D' => 'Proposition D',
+                        'E' => 'Proposition E',
+                        ),
+                    'required' => true,
+                    'expanded' => false,
+                    'multiple' => false,
+                    ))
                 ->add('explication', 'textarea')
-                ->add('urlPhoto',   'text')
+                ->add('qcmgroup', 'entity', array(
+                    'class' => 'PWQCMBundle:QCMGroup',
+                    'property' => 'titre',
+                    'expanded' => false,
+                    'multiple' => false,
+                    ))
+                ->add('image',   new ImageType())
                 ->add('submit',     'submit')
                 ;
     }

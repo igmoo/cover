@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class MatiereType extends AbstractType
+class ConcoursType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -15,12 +15,6 @@ class MatiereType extends AbstractType
     {
         $builder->add('nom',     'textarea')
                 ->add('description',     'textarea')
-                ->add('concours', 'entity', array(
-                    'class' => 'PWQCMBundle:Concours',
-                    'property' => 'nom',
-                    'expanded' => false,
-                    'multiple' => false,
-                    ))
                 ->add('image',   new ImageType())
                 ->add('submit',     'submit')
                 ;
@@ -32,7 +26,7 @@ class MatiereType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PW\QCMBundle\Entity\Matiere'
+            'data_class' => 'PW\QCMBundle\Entity\Concours'
         ));
     }
 
@@ -41,7 +35,7 @@ class MatiereType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'pw_qcmbundle_matiere';
+        return 'pw_qcmbundle_concours';
     }
 
 

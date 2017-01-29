@@ -5,6 +5,7 @@ namespace PW\QCMBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use PW\QCMBundle\Repository\MatiereRepository;
 
 class QCMGroupType extends AbstractType
 {
@@ -13,10 +14,20 @@ class QCMGroupType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('titre', 'text')
+        $builder->add('titre', 'textarea')
                 ->add('description', 'textarea')
-                ->add('urlPhoto', 'text')
-                ->add('submit',     'submit');
+                ->add('matiere', 'entity', array(
+                    'class' => 'PWQCMBundle:Matiere',
+                    'property' => 'nom',
+                    'expanded' => false,
+                    'multiple' => false,
+                    'query_builder' => function(MatiereRepository $repo){
+                        return $repo->getTheseConcoursMatiere();
+                    }
+                    ))
+                ->add('image',   new ImageType())
+                ->add('submit',     'submit')
+                ;
     }
     
     /**

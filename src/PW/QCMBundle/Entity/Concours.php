@@ -43,11 +43,10 @@ class Concours
     private $description;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="urlPhoto", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="PW\QCMBundle\Entity\Image", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $urlPhoto;
+    private $image;
 
     public function __construct()
     {
@@ -155,5 +154,28 @@ class Concours
     public function getUrlPhoto()
     {
         return $this->urlPhoto;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \PW\QCMBundle\Entity\Image $image
+     * @return Concours
+     */
+    public function setImage(\PW\QCMBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \PW\QCMBundle\Entity\Image 
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

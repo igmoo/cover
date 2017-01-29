@@ -13,21 +13,16 @@
 	<div class="well">
 		<h4> Enonce: {{ qcm.enonce }} </h4> </br>
 		<em>Cree le {{ qcm.date|date('d/m/Y') }} </br></em>
-		   <ul>
-			<li>A-/&nbsp;&nbsp; {{ qcm.propoA }}</li>
-			<li>B-/ &nbsp;&nbsp;{{ qcm.propoB }}</li>
-			<li>C-/ &nbsp;&nbsp;{{ qcm.propoC }}</li>
-			<li>D-/&nbsp;&nbsp; {{ qcm.propoD }}</li>
-			</ul>
+		<b>Proposition A:</b> {{ qcm.propoA }} </br>
+		<b>Proposition B:</b> {{ qcm.propoB }} </br>
+		<b>Proposition C:</b> {{ qcm.propoC }} </br>
+		<b>Proposition D:</b> {{ qcm.propoD }} </br>
+		<b>Proposition E:</b> {{ qcm.propoE }} </br>
+		<b>Reponse: {{ qcm.reponse }} </b></br>
 		<b>Status:</b>{% if qcm.validated == 0 %} Pas encore valide.
 							{% else %} Valide.{% endif %}
 		</br><hr>
 	</div>
-	 <h2>Cette page supporte les formule mathematiques</h2>
-		<p>
-            When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
-            $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
-        </p>
 	<p>
 		{% if qcm.validated == false %}
 			<a href="{{ path('pw_qcm_valider', {'id': qcm.id}) }}" class="btn btn-success">
